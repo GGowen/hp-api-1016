@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Household;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
-use App\Household;
 use App\Submission;
 
 class Controller extends BaseController
