@@ -31,9 +31,14 @@ class Controller extends BaseController
         return response()->json($household->toFormattedArray());
     }
 
+    /**
+     * @param $x
+     * @param $y
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getHouseholds($x, $y)
     {
-
         $scaleLength = 7;
 
         if(!strpos($x,'-')){
@@ -49,16 +54,18 @@ class Controller extends BaseController
             $yCharacter = substr($y,0,$scaleLength);
         }
 
-        $household = Household::where('coordinatesX','LIKE', '%'.$xCharacter.'%')
+        $households = Household::where('coordinatesX','LIKE', '%'.$xCharacter.'%')
             ->where('coordinatesY','LIKE', '%'.$yCharacter.'%')
             ->get();
 
-        if($household){
-            return $household->toJson();
+        $finalHouseholds = [];
+        foreach($households as $household) {
+            /**
+             * @param Household $household
+             */
+            $finalHouseholds[] = $household->toFormattedArray();
         }
 
-        $error = 'No Household Found';
-
-        return $error;
+        return response()->json($finalHouseholds);
     }
 }
