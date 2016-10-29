@@ -17,3 +17,5 @@ $app->get('/api/household/{x}/{y}', function ($x,$y) use ($app) {
 
     return $app->version();
 });
+
+$app->post('/api/household', 'Controller@createHousehold');
