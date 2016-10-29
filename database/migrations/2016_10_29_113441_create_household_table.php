@@ -16,8 +16,8 @@ class CreateHouseholdTable extends Migration
         Schema::create('household', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->float('coordinatesX');
-            $table->float('coordinatesY');
+            $table->decimal('coordinatesX',12,10);
+            $table->decimal('coordinatesY',12,10);
             $table ->string('imagePathMain');
             $table->string('imagePathThumbnail');
         });

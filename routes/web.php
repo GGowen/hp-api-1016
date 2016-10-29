@@ -11,11 +11,6 @@
 |
 */
 
-$app->get('/api/household/{x}/{y}', function ($x,$y) use ($app) {
-
-
-
-    return $app->version();
-});
-
+$app->get('/api/households/{x}/{y}', 'Controller@getHouseholds');
+    
 $app->post('/api/household', 'Controller@createHousehold');
