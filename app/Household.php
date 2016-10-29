@@ -5,6 +5,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App;
+use App\Submission;
 
 class Household extends Model
 {
@@ -27,9 +28,23 @@ class Household extends Model
     /**
      * Get the Sessions for the Household
      */
-    public function sessions()
+    public function submissions()
     {
-        return $this->hasMany('App\Session');
+        return $this->hasMany('App\submission');
+    }
+
+    public function getRating(){
+
+        $submissionTrue = $this->submissions()->where('rating', 1)->get();
+        $submissionFalse = $this->submissions()->where('rating', 0)->get();
+
+        if($submissionTrue >= $submissionFalse){
+            $rating = True;
+            return $rating;
+        }else{
+            $rating = False;
+            return $rating;
+        }
     }
 
     public function toFormattedArray()
@@ -40,8 +55,7 @@ class Household extends Model
             'lat' => $this->coordinatesY,
             'image_path' => $this->imagePathMain,
             'thumbnail_path' => $this->imagePathThumbnail,
-            'rating' => true,
+            'rating' => $this->getRating(),
         ];
     }
-
 }
