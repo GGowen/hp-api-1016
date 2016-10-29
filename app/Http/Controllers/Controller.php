@@ -6,7 +6,7 @@ use App\Household;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Submission;
-use Log;
+
 class Controller extends BaseController
 {
 
@@ -36,9 +36,6 @@ class Controller extends BaseController
 
         $household_id = $request->input('household_id');
         $rating = $request->input('rating');
-
-
-        Log::info('Showing user: '.$request);
 
         $submission = new Submission([
             'rating' => $rating,
