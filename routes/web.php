@@ -11,8 +11,6 @@
 |
 */
 
-$app->get('/api/households/{x}/{y},{type}', 'Controller@getHouseholds');
-    
+$app->get('/api/households/{x}/{y}/{type}', 'Controller@getHouseholds');
 $app->post('/api/household', 'Controller@createHousehold');
-
 $app->post('/api/submission', 'Controller@createSubmission');
