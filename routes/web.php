@@ -11,6 +11,9 @@
 |
 */
 
-$app->get('/', function () use ($app) {
+$app->get('/api/household/{x}/{y}', function ($x,$y) use ($app) {
+
+
+
     return $app->version();
 });
