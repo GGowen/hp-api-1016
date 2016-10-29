@@ -36,18 +36,17 @@ class Controller extends BaseController
 
     public function createSubmission(Request $request){
 
-        $houseId = $request->input('household_id');
-        $rating = $request->input('Rating');
+        $household_id = $request->input('household_id');
+        $rating = $request->input('rating');
 
-        $submission = new Submission();
+        $submission = new Submission([
+            'rating' => $rating,
+            'household_id' => $household_id
+        ]);
 
-
+        $submission->save();
+        return 'True';
     }
-
-
-
-
-
 
     public function getHouseholds($x, $y,$type)
     {

@@ -25,6 +25,14 @@ class Submission extends Model
     }
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'rating',
+        'household_id'
+    ];
+
+    /**
      * @return mixed
      */
     public function getNameAttribute()
