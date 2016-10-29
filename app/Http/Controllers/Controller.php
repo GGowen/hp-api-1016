@@ -6,6 +6,7 @@ use App\Household;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Household;
+use App\Submission;
 
 class Controller extends BaseController
 {
@@ -32,10 +33,29 @@ class Controller extends BaseController
         return response()->json($household->toFormattedArray());
     }
 
-    public function getHouseholds($x, $y)
-    {
+    public function createSubmission(Request $request){
 
-        $scaleLength = 7;
+        $houseId = $request->input('household_id');
+        $rating = $request->input('Rating');
+
+        $submission = new Submission();
+
+
+    }
+
+
+
+
+
+
+
+    public function getHouseholds($x, $y,$type)
+    {
+        if($type == 'L') {
+            $scaleLength = 7;
+        }elseif($type == 'S'){
+            $scaleLength = 9;
+        }
 
         if(!strpos($x,'-')){
             $xCharacter = str_replace('-','',$x);
@@ -59,7 +79,6 @@ class Controller extends BaseController
         }
 
         $error = 'No Household Found';
-
         return $error;
     }
 }
