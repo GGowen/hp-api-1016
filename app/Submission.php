@@ -6,13 +6,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App;
 
-class Session extends Model
+class Submission extends Model
 {
 
     /**
      * @var string
      */
-    protected $table = 'session';
+    protected $table = 'submission';
 
     /**
      * The tags that belong to the image.

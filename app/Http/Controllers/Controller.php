@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Household;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
+use App\Submission;
 
 class Controller extends BaseController
 {
@@ -31,15 +32,28 @@ class Controller extends BaseController
         return response()->json($household->toFormattedArray());
     }
 
-    /**
-     * @param $x
-     * @param $y
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getHouseholds($x, $y)
+    public function createSubmission(Request $request){
+
+        $houseId = $request->input('household_id');
+        $rating = $request->input('Rating');
+
+        $submission = new Submission();
+
+
+    }
+
+
+
+
+
+
+    public function getHouseholds($x, $y,$type)
     {
-        $scaleLength = 7;
+        if($type == 'L') {
+            $scaleLength = 7;
+        }elseif($type == 'S'){
+            $scaleLength = 9;
+        }
 
         if(!strpos($x,'-')){
             $xCharacter = str_replace('-','',$x);
