@@ -11,8 +11,6 @@
 |
 */
 
-
-
-$app->get('/api/household/{x}/{y}', 'Controller@getHouseholds');
-
-
+$app->get('/api/households/{x}/{y}', 'Controller@getHouseholds');
+    
+$app->post('/api/household', 'Controller@createHousehold');
