@@ -6,7 +6,7 @@ use App\Household;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Submission;
-
+use Log;
 class Controller extends BaseController
 {
 
@@ -34,18 +34,20 @@ class Controller extends BaseController
 
     public function createSubmission(Request $request){
 
-        $houseId = $request->input('household_id');
-        $rating = $request->input('Rating');
-
-        $submission = new Submission();
+        $household_id = $request->input('household_id');
+        $rating = $request->input('rating');
 
 
+        Log::info('Showing user: '.$request);
+
+        $submission = new Submission([
+            'rating' => $rating,
+            'household_id' => $household_id
+        ]);
+
+        $submission->save();
+        return 'True';
     }
-
-
-
-
-
 
     public function getHouseholds($x, $y,$type)
     {
