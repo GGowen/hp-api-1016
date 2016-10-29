@@ -21,11 +21,13 @@ class Controller extends BaseController
     {
         $lat = $request->input('lat');
         $long = $request->input('long');
+        $base64Image = $request->input('image');
+        $imagePaths = Household::saveImage($base64Image);
         $household = new Household([
             'coordinatesX' => $lat,
             'coordinatesY' => $long,
-            'imagePathMain' => false,
-            'imagePathThumbnail' => false,
+            'imagePathMain' => $imagePaths['image'],
+            'imagePathThumbnail' => $imagePaths['thumb'],
         ]);
         $household->save();
 
