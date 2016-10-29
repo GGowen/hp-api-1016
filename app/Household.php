@@ -44,4 +44,23 @@ class Household extends Model
         ];
     }
 
+    public static function saveImage($base64) {
+        $base64 = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64));
+
+        $public_path = rtrim(app()->basePath('public/'), '/');
+        $time = time();
+        $pub_url_path = '/img/households/';
+        $file_path = $public_path . $pub_url_path;
+        $image_name = "{$time}.png";
+        $thumb_name = "{$time}_thumb.png";
+
+        file_put_contents($file_path . $image_name, $base64);
+        file_put_contents($file_path . $thumb_name, $base64);
+
+        return [
+            'image' => $pub_url_path . $image_name,
+            'thumb' => $pub_url_path . $thumb_name,
+        ];
+    }
+
 }
