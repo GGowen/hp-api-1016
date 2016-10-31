@@ -5,7 +5,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App;
-use App\Submission;
 
 class Household extends Model
 {
@@ -30,7 +29,7 @@ class Household extends Model
      */
     public function submissions()
     {
-        return $this->hasMany('App\submission');
+        return $this->hasMany('App\Submission');
     }
 
     public function getRating(){
